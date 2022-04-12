@@ -16,6 +16,8 @@ require_once './includes/menssage.php';
                             <th>Sobrenome</th>
                             <th>Email</th>
                             <th>Idade</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +32,7 @@ require_once './includes/menssage.php';
                                 <td><?php echo $data['email']; ?></td>
                                 <td><?php echo $data['age']; ?></td>
 
-                                <!-- botao editar -->
+                                <!-- botao editar registro -->
                                     <td><a class="btn btn-success" href="edit.php?id=<?php echo $data['id']; ?>" role="button"><span class="material-icons">edit</span></a></td>
                                 <!---->
 
