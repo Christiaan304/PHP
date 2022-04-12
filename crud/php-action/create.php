@@ -5,12 +5,23 @@
     //conexão 
     require_once 'db-connect.php';
 
+    //função para evitar ataque xss
+    function clear($input)
+    {
+        global $connect;
+        // sql
+        $var = mysqli_escape_string($connect, $input);
+        // xss  
+        $var = htmlspecialchars($var);
+        return $var;
+    }
+
     if(isset($_POST['btn-register']))
     {
-        $name = mysqli_escape_string($connect, ucwords(strtolower($_POST['name'])));   
-        $surname = mysqli_escape_string($connect, ucwords(strtolower($_POST['surname'])));
-        $email = mysqli_escape_string($connect, strtolower($_POST['email']));
-        $age = mysqli_escape_string($connect, $_POST['age']);
+        $name = clear(ucwords(strtolower($_POST['name'])));   
+        $surname = clear(ucwords(strtolower($_POST['surname'])));
+        $email = clear(strtolower($_POST['email']));
+        $age = clear($_POST['age']);
 
         $sql = "INSERT INTO client (name, surname, email, age) VALUES ('$name', '$surname', '$email', '$age')";
 
