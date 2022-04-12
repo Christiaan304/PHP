@@ -19,6 +19,7 @@
             <form action="./php-action/update.php" method="POST">
 
                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo $data['name']; ?>">
