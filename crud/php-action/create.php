@@ -1,4 +1,8 @@
-<?php 
+<?php
+    //sessão
+    session_start();
+
+    //conexão 
     require_once 'db-connect.php';
 
     if(isset($_POST['btn-register']))
@@ -12,11 +16,13 @@
 
         if(mysqli_query($connect, $sql))
         {
-            header('Location: ../index.php?sucesso');
+            $_SESSION['menssage'] = "Cadastrado com sucesso";
+            header('Location: ../index.php');
         }
         else
         {
-            header('Location: ../index.php?erro');
+            $_SESSION['menssage'] = "Erro ao cadastrar";
+            header('Location: ../index.php');
         }
     }
 ?>
