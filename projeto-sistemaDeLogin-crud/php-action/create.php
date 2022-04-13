@@ -28,12 +28,12 @@
         if(mysqli_query($connect, $sql))
         {
             $_SESSION['menssage'] = "Cadastrado com sucesso";
-            header('Location: ../login.php');
+            header('Location: ../index.php');
         }
         else
         {
             $_SESSION['menssage'] = "Erro ao cadastrar";
-            header('Location: ../login.php');
+            header('Location: ../index.php');
         }
     }
 ?>

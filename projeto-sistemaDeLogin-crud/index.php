@@ -21,6 +21,7 @@
             </div>
     
         <?php
+         session_unset();
     endif;
 
     //btn entrar
