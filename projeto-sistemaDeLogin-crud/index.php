@@ -33,15 +33,17 @@
 
         if(empty($login) or empty($password))
         {
-            $errors[] = "<p>O campo login e senha são obrigatórios</p>";
+            $errors[] = "<p class='mt-2 text-danger'>O campo login e senha são obrigatórios</p>";
         }
         else
         {
+            //verificar se o usuario existe
             $sql = "SELECT login FROM users WHERE login = '$login'";
             $result = mysqli_query($connect, $sql);
 
             if(mysqli_num_rows($result) > 0)
             {
+                //verificar usuario e senha
                 $password = sha1($password);
                 $sql = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
                 $result = mysqli_query($connect, $sql);
@@ -58,12 +60,12 @@
                 }
                 else
                 {
-                    $errors[] = "Usuário ou senha não comferem";
+                    $errors[] = "<p class='mt-3 text-danger'>Usuário ou senha incorreto</p>";
                 }
             }
             else
             {
-                $errors[] = "Usuário inexistente";
+                $errors[] = "<p class='mt-3 text-danger'>Usuário inexistente</p>";
             }
         }
     }
@@ -71,7 +73,7 @@
 
 <div class="container">
     <div class="row mt-3 pt-5 text-center">
-        <div class="col-lg-4 offset-4 card">
+        <div class="col-lg-4 offset-lg-4 card">
             <?php
                 if(!empty($errors))
                 {
