@@ -10,15 +10,15 @@ require_once("../scripts/config.php");
 use EasyPDO\EasyPDO;
 $bd = new EasyPDO();
 
-$_userID = aes_decrypt($_GET['id']);
+$userID = aes_decrypt($_GET['id']);
 
-if ($_userID == -1 || $_userID == false) {
+if ($userID == -1 || $userID == false) {
     header("Location: Restrict.php");
     exit;
 }
 
 $params = [
-    ':id' => $_userID
+    ':id' => $userID
 ];
 
 $contact = $bd->select("SELECT 
@@ -44,8 +44,8 @@ $contact = $bd->select("SELECT
     <div class="container">
         <div class="row">
             <div class="col-md-3 mt-6 mx-auto">
-                <form class="row" action="../scripts/edit_submit.php" method="post">
-                    <input type="hidden" name="UserID" value="<?= aes_encrypt($_userID) ?>">
+                <form class="row" action="../scripts/edit_submit.php" method="POST">
+                    <input type="hidden" name="UserID" value="<?= aes_encrypt($userID) ?>">
 
                     <div class="col-md-12">
                         <label class="form-label" for="inputUser">Usuário:</label>

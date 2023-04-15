@@ -29,6 +29,20 @@ if (isset($_SESSION['user'])) {
                     </div>
                 <?php endif ?>
 
+                <?php if (isset($_GET['usr'])) : ?>
+                    <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                        Usuário inválido.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif ?>
+
+                <?php if (isset($_GET['psswrd'])) : ?>
+                    <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                        A senha deve ter no mínimo 10 e no máximo 24 caracteres.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif ?>
+
                 <form class="row" action="../scripts/cadastro_submit.php" method="post">
                     <div class="col-md-12">
                         <label class="form-label" for="inputUser">Usuário:</label>
@@ -60,7 +74,7 @@ if (isset($_SESSION['user'])) {
                     </div>
 
                     <div class="col-md-3 mt-4">
-                        <button class="btn btn-primary" type="submit">Cadastrar</button>
+                        <button class="btn btn-success" type="submit">Cadastrar</button>
                     </div>
                 </form>
             </div>
