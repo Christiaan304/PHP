@@ -1,0 +1,21 @@
+{
+    "name": "christiaan/webstore",
+    "description": "loja online em php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "christiaan",
+            "email": "christiaan.fr@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "core\\" : "core"
+        },
+        "files": [
+            "config.php"
+        ]
+    }
+}
