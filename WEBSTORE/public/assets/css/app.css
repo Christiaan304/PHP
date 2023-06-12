@@ -1,0 +1,10 @@
+/* app.css */
+
+.linknav {
+    text-decoration: none;
+    margin: 0px 6px;
+}
+
+.linknav:hover {
+    text-decoration: underline;
+}
