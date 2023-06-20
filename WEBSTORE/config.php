@@ -17,5 +17,5 @@ define('KEY_AES', 't66UvTHCvQPEapcwRhP_JgSBg');
 //configurações do email que envia a confirmação do cadastro
 define('MAIL_HOST', 'smtp.zoho.com');
 define('MAIL_USERNAME', 'christiaanfr@zohomail.com');
-define('MAIL_PASSWORD', '43@igb@nr@GpJrP');
+define('MAIL_PASSWORD', '');
 define('MAIL_PORT', 465);
