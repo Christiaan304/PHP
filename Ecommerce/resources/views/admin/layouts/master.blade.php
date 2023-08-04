@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>General Dashboard &mdash; Stisla</title>
+    <title>{{ config('app.name') . ' Dashboard' ?? 'SEM NOME' }}</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -38,8 +38,10 @@
 <body>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
+            <!-- navbar -->
             @include('admin.layouts.navbar')
 
+            <!-- sidebar -->
             @include('admin.layouts.sidebar')
 
             <!-- Main Content -->
@@ -47,6 +49,7 @@
                 @yield('content')
             </div>
 
+            <!-- footer -->
             @include('admin.layouts.footer')
         </div>
     </div>
