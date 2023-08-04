@@ -27,7 +27,8 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.profile')->with('success', 'Profile updated successfully');
+        toastr()->success('Profile updated successfully');
+        return redirect()->route('admin.profile');
     }
 
     public function update_password(AdminUpdatePasswordRequest $request)
@@ -36,6 +37,7 @@ class ProfileController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
+        toastr()->success('Password updated successfully');
         return redirect()->route('admin.profile')->with('success', 'Password updated successfully');
     }
 }
