@@ -21,4 +21,4 @@ Route::middleware('auth')->group(function () {
 
 //Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 
-Route::view('/admin/login', 'admin.login');
+//Route::view('/admin/login', 'admin.login');
