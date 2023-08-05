@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Frontend\HomeController;
 
 require __DIR__ . '/auth.php';
 
@@ -11,9 +11,9 @@ Route::view('/', 'frontend.home')->name('home');
 Route::controller(HomeController::class)->group(function () {
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'role:user', 'verified'])->name('dashboard');
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
+    Route::view('/dashboard', 'frontend.dashboard.dashboard')->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,39 +1,55 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+@extends('frontend.layouts.master')
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@section('content')
+    <section id="wsus__breadcrumb">
+        <div class="wsus_breadcrumb_overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h4>{{ __('Change Password') }}</h4>
+                        <ul>
+                            <li><a href="#">{{ __('Login') }}</a></li>
+                            <li><a href="#">change password</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    <section id="wsus__login_register">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-md-10 col-lg-7 m-auto">
+                    <form method="POST" action="{{ route('password.store') }}">
+                        @csrf
+                        {{-- password reset token --}}
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+                        <div class="wsus__change_password">
+                            <h4>{{ __('Change Password') }}</h4>
+                            <div class="wsus__single_pass">
+                                <label>Email</label>
+                                <input type="email" name="email" placeholder="Email"
+                                    value="{{ old('email', $request->email) }}" autofocus>
+                            </div>
+
+                            <div class="wsus__single_pass">
+                                <label>{{ __('New Password') }}</label>
+                                <input type="password" name="password" placeholder="{{ __('New Password') }}">
+                            </div>
+
+                            <div class="wsus__single_pass">
+                                <label>{{ __('Confirm Password') }}</label>
+                                <input type="password" name="password_confirmation"
+                                    placeholder="{{ __('Confirm Password') }}">
+                            </div>
+
+                            <button class="common_btn" type="submit">{{ __('Submit') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </section>
+@endsection

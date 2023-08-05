@@ -308,9 +308,21 @@
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a href="contact.html">{{ __('Contact') }}</a></li>
+
                         @auth
-                            <li><a href="dsahboard.html">{{ __('My Account') }}</a></li>
+                            @if (auth()->user()->role === 'admin')
+                                <li>
+                                    <a class="text-danger" href="{{ route('admin.dashboard') }}">{{ auth()->user()->name }} -
+                                        {{ __('My Account') }}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('user.dashboard') }}">{{ auth()->user()->name }} -
+                                        {{ __('My Account') }}</a>
+                                </li>
+                            @endif
                         @endauth
+
                         @guest
                             <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         @endguest
