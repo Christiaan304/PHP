@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'frontend.home')->name('home');
+
+Route::controller(HomeController::class)->group(function () {
 });
 
 Route::get('/dashboard', function () {
