@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\VendorUpdateProfile;
-use App\Http\Requests\VendorUpdatePassword;
+use App\Http\Requests\UserUpdateProfileRequest;
+use App\Http\Requests\UserUpdatePasswordRequest;
 
-class VendorController extends Controller
+class UserProfileController extends Controller
 {
-    public function update_profile(VendorUpdateProfile $request)
+    public function update_profile(UserUpdateProfileRequest $request)
     {
         $user = auth()->user();
         $user->name = $request->name;
@@ -31,7 +31,7 @@ class VendorController extends Controller
         return redirect()->route('user.profile');
     }
 
-    public function update_password(VendorUpdatePassword $request)
+    public function update_password(UserUpdatePasswordRequest $request)
     {
         $request->user()->update([
             'password' => bcrypt($request->password)

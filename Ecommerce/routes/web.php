@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\UserProfileController;
 
 require __DIR__ . '/auth.php';
 
@@ -13,6 +14,9 @@ Route::controller(HomeController::class)->group(function () {
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::view('/dashboard', 'frontend.dashboard.dashboard')->name('dashboard');
+    Route::view('/profile', 'frontend.dashboard.profile')->name('profile');
+    Route::put('/update', [UserProfileController::class, 'update_profile'])->name('update.profile');
+    Route::post('/update/password', [UserProfileController::class, 'update_password'])->name('update.password');
 });
 
 Route::middleware('auth')->group(function () {

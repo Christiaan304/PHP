@@ -71,18 +71,12 @@
                                         <label>{{ __('Current password') }}</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                                             name="current_password" required>
-                                        @error('password')
-                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <div class="form-group col-4">
                                         <label>{{ __('New password') }}</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                                             name="password" required>
-                                        @error('password')
-                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <div class="form-group col-4">

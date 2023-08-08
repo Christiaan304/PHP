@@ -1,10 +1,10 @@
-@extends('frontend.dashboard.layouts.master')
+@extends('vendor.dashboard.layouts.master')
 
 @section('content')
     <section id="wsus__dashboard">
         <div class="container-fluid">
-            @include('frontend.dashboard.layouts.side-bar')
-            
+            @include('vendor.dashboard.layouts.side-bar')
+
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
                     <div class="dashboard_content">
@@ -45,6 +45,11 @@
                                         <i class="fal fa-map-marker-alt"></i>
                                         <p>address</p>
                                     </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-12">
                                 </div>
                             </div>
                         </div>
