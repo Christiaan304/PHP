@@ -18,7 +18,7 @@
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit;"><i
-                        class="far fa-sign-out-alt"></i> {{ __('Log out') }}</a>
+                        class="far fa-sign-out-alt"></i> Log out</a>
             </form>
         </li>
     </ul>

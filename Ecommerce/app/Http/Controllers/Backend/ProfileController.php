@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use App\Http\Requests\AdminUpdateProfileRequest;
 use App\Http\Requests\AdminUpdatePasswordRequest;
 
 class ProfileController extends Controller
 {
+    use \App\Traits\ImageUploadTrait;
+
     public function update_profile(AdminUpdateProfileRequest $request)
     {
         $user = auth()->user();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->image_path = $this->upload_image($request, 'image', 'uploads/');
 
+        /*
         if ($request->has('image')) {
             File::exists(public_path($user->image_path)) && File::delete(public_path($user->image_path)); // delete old image (if any)
 
@@ -24,6 +26,7 @@ class ProfileController extends Controller
             $path = 'uploads/' . $file_name;
             $user->image_path = $path;
         }
+        */
 
         $user->save();
 
