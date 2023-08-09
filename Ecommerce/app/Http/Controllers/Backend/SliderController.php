@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use App\DataTables\SliderDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSliderRequest;
 
@@ -11,9 +12,9 @@ class SliderController extends Controller
 {
     use \App\Traits\ImageUploadTrait;
 
-    public function index()
+    public function index(SliderDataTable $dataTable)
     {
-        return view('admin.slider.index');
+        return $dataTable->render('admin.slider.index');
     }
 
     public function create()
