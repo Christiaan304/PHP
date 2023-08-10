@@ -17,7 +17,7 @@ trait ImageHandleTrait
         }
     }
 
-    public function update_image(Request $request, $input_name, string $path, string $old_path = null)
+    public function update_image(Request $request, $input_name, $path, $old_path = null)
     {
         if ($request->hasFile($input_name)) {
             //delete old image if exists

@@ -71,6 +71,8 @@ class SliderController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        Slider::destroy($id);
+        toastr('Slider has been deleted successfully', 'success');
+        return redirect()->route('admin.slider.index');
     }
 }
