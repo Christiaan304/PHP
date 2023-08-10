@@ -41,18 +41,14 @@
 <body>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
-            <!-- navbar -->
             @include('admin.layouts.navbar')
-
-            <!-- sidebar -->
+            
             @include('admin.layouts.sidebar')
 
-            <!-- Main Content -->
             <div class="main-content">
                 @yield('content')
             </div>
 
-            <!-- footer -->
             @include('admin.layouts.footer')
         </div>
     </div>

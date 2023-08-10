@@ -8,7 +8,7 @@ use App\Http\Requests\AdminUpdatePasswordRequest;
 
 class ProfileController extends Controller
 {
-    use \App\Traits\ImageUploadTrait;
+    use \App\Traits\ImageHandleTrait;
 
     public function update_profile(AdminUpdateProfileRequest $request)
     {
