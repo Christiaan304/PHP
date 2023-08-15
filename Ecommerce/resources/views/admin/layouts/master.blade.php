@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <title>{{ config('app.name') . ' Dashboard' ?? 'SEM NOME' }}</title>
 
     <!-- General CSS Files -->
@@ -42,7 +44,7 @@
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             @include('admin.layouts.navbar')
-            
+
             @include('admin.layouts.sidebar')
 
             <div class="main-content">
@@ -72,6 +74,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('backend/assets/js/page/index-0.js') }}"></script>
@@ -86,6 +89,52 @@
                 toastr.error("{{ $error }}")
             @endforeach
         @endif
+    </script>
+
+    <!-- Dynamic delete button -->
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
+            $('body').on('click', '.delete-button', function(event) {
+                event.preventDefault();
+                let delete_url = $(this).attr('href');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'DELETE',
+                            url: delete_url,
+
+                            success: function(data) {
+                                console.log(data)
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error)
+                            }
+                        })
+
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            })
+        })
     </script>
 
     @stack('scripts')

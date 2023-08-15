@@ -71,7 +71,9 @@ class SliderController extends Controller
 
     public function destroy(string $id)
     {
-        Slider::destroy($id);
+        $slider = Slider::findOrFail($id);
+        $this->delete_image($slider->slider_image);
+        $slider->delete();
         toastr('Slider has been deleted successfully', 'success');
         return redirect()->route('admin.slider.index');
     }

@@ -7,9 +7,8 @@ use App\Http\Controllers\Frontend\UserProfileController;
 
 require __DIR__ . '/auth.php';
 
-Route::view('/', 'frontend.home')->name('home');
-
 Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
 });
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
