@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap-iconpicker.min.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
@@ -82,6 +83,8 @@
     <!-- Template JS File -->
     <script src="{{ asset('backend/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
+
 
     <script>
         @if ($errors->any())
@@ -99,7 +102,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            
+
             $('body').on('click', '.delete-button', function(event) {
                 event.preventDefault();
                 let delete_url = $(this).attr('href');
@@ -119,18 +122,26 @@
                             url: delete_url,
 
                             success: function(data) {
-                                console.log(data)
+                                if (data.status == 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    )
+                                    window.location.reaload();
+                                } 
+                                else if (data.status == 'error') {
+                                    Swal.fire(
+                                        'Cant Delete!',
+                                        data.message,
+                                        'success'
+                                    )
+                                }
                             },
                             error: function(xhr, status, error) {
                                 console.log(error)
                             }
                         })
-
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
                     }
                 })
             })

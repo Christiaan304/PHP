@@ -5,12 +5,14 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubcategoryController;
 
 Route::view('dashboard', 'admin.dashboard')->name('dashboard');
 Route::view('profile', 'admin.profile.index')->name('profile');
 
 Route::resource('slider', SliderController::class);
 Route::resource('category', CategoryController::class);
+Route::resource('subcategory', SubcategoryController::class);
 
 Route::controller(ProfileController::class)->group(function () {
     Route::post('update', 'update_profile')->name('update.profile');
