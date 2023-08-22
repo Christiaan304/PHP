@@ -23,6 +23,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('admin.category.index') }}">{{ __('Category') }}</a></li>
                         <li><a class="nav-link" href="{{ route('admin.subcategory.index') }}">{{ __('Subcategory') }}</a>
+                        <li><a class="nav-link" href="{{ route('admin.childcategory.index') }}">{{ __('Childcategory') }}</a>
                         </li>
                     </ul>
                 </li>

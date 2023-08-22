@@ -2,25 +2,33 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\DataTables\ChildCategoryDataTable;
 
 class ChildCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(ChildCategoryDataTable $dataTable)
     {
-        //
+        return $dataTable->render('admin.childcategory.index');
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+        return view('admin.childcategory.create', compact('categories'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Get sub categories
      */
-    public function create()
+    public function get_subcategory(Request $request)
     {
-        //
+        return Subcategory::where('category_id', '=', $request->id)
+            ->where('status', '1')
+            ->get();
     }
 
     /**
